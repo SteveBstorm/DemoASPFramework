@@ -1,4 +1,5 @@
 ﻿using DemoASPFramework.Models;
+using DemoASPFramework.Tools;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,13 @@ namespace DemoASPFramework.Controllers
             return RedirectToAction("Index");
         }
 
+        [AuthRequired]
         public ActionResult Create()
         {
             return View();
         }
 
+        [AuthRequired]
         [HttpPost]
         public ActionResult Create(Article article)
         {

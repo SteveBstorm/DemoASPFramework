@@ -1,14 +1,21 @@
-﻿@model IEnumerable<DemoASPFramework.Models.Article>
+﻿@using DemoASPFramework.Tools
+@model IEnumerable<DemoASPFramework.Models.Article>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+@if (SessionTool.user != null)
+{
+    <p>Bonjour, @SessionTool.user.Email</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 @ViewBag.truc
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -21,21 +28,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Libelle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prix)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
